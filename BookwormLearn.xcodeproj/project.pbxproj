@@ -14,6 +14,7 @@
 		32C4978024B62FAF006307EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C4977F24B62FAF006307EF /* Assets.xcassets */; };
 		32C4978324B62FAF006307EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C4978224B62FAF006307EF /* Preview Assets.xcassets */; };
 		32C4978624B62FAF006307EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C4978424B62FAF006307EF /* LaunchScreen.storyboard */; };
+		32C4979524B63A8B006307EF /* AnyViewErasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4979424B63A8B006307EF /* AnyViewErasure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		32C4978224B62FAF006307EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		32C4978524B62FAF006307EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32C4978724B62FAF006307EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32C4979424B63A8B006307EF /* AnyViewErasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyViewErasure.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				32C4977624B62FA7006307EF /* AppDelegate.swift */,
 				32C4977824B62FA7006307EF /* SceneDelegate.swift */,
 				32C4977D24B62FA7006307EF /* ContentView.swift */,
+				32C4979424B63A8B006307EF /* AnyViewErasure.swift */,
 				32C4977F24B62FAF006307EF /* Assets.xcassets */,
 				32C4978424B62FAF006307EF /* LaunchScreen.storyboard */,
 				32C4978724B62FAF006307EF /* Info.plist */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C4977724B62FA7006307EF /* AppDelegate.swift in Sources */,
+				32C4979524B63A8B006307EF /* AnyViewErasure.swift in Sources */,
 				32C4977C24B62FA7006307EF /* BookwormLearn.xcdatamodeld in Sources */,
 				32C4977E24B62FA7006307EF /* ContentView.swift in Sources */,
 				32C4977924B62FA7006307EF /* SceneDelegate.swift in Sources */,
