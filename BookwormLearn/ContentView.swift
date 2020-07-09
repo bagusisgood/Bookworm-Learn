@@ -16,6 +16,11 @@
 //  1. PushButton Struct - @Binding var isOn: Bool
 //  2. PushButton instance in ContentView using $binding - PushButton(title: "Remember Me", isOn: $rememberMe)
 
+//  @Environment Wrapper: size classes - how much space we have for our views
+//  Two size classes horizontally and vertically, called “compact” and “regular”.
+//  AnyView() - Type erased wrapper -- AnyView effectively hides – or erases – the type of the views it contains.
+//  Why we don’t use AnyView all the time if it lets us avoid the restrictions of some View? The answer is simple: performance. -- It’s generally best to avoid AnyView unless you specifically need it.
+
 import SwiftUI
 
 struct PushButton: View {
@@ -43,24 +48,45 @@ struct PushButton: View {
 struct ContentView: View {
     @State private var rememberMe = false
     
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Hello, World!")
-                
-                Toggle(isOn: $rememberMe) {
-                    Text("Remember Me")
-                }
-                
-                Spacer()
-                
-                PushButton(title: "Remember Me", isOn: $rememberMe)
-                Text(rememberMe ? "On" : "Off")
-                
-                Spacer()
+//        NavigationView {
+//            VStack {
+//                Text("Hello, World!")
+//
+//                Toggle(isOn: $rememberMe) {
+//                    Text("Remember Me")
+//                }
+//
+//                Spacer()
+//
+//                PushButton(title: "Remember Me", isOn: $rememberMe)
+//                Text(rememberMe ? "On" : "Off")
+//
+//                Spacer()
+//
+//            }
+//            .padding()
+//            .navigationBarTitle(Text("Bookworm Learn"))
+//        }
+        
+        if sizeClass == .compact {
+            return AnyView(VStack {
+                Text("Active Size Class:")
+                Text("COMPACT")
+
             }
-            .padding()
-            .navigationBarTitle(Text("Bookworm Learn"))
+            .font(.largeTitle))
+
+        } else {
+            return AnyView(HStack {
+                Text("Active Size Class:")
+                Text("REGULAR")
+
+            }
+            .font(.largeTitle))
+
         }
         
     }
