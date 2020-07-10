@@ -21,6 +21,8 @@
 //  AnyView() - Type erased wrapper -- AnyView effectively hides – or erases – the type of the views it contains.
 //  Why we don’t use AnyView all the time if it lets us avoid the restrictions of some View? The answer is simple: performance. -- It’s generally best to avoid AnyView unless you specifically need it.
 
+//  Core Data:
+
 import SwiftUI
 
 struct PushButton: View {
@@ -48,7 +50,10 @@ struct PushButton: View {
 struct ContentView: View {
     @State private var rememberMe = false
     
-    @Environment(\.horizontalSizeClass) var sizeClass
+    @FetchRequest(entity: Student.entity(), sortDescriptors: []) var students: FetchedResults<Student>
+    
+//  @Environment(\.horizontalSizeClass) var sizeClass
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
 //        NavigationView {
@@ -71,29 +76,57 @@ struct ContentView: View {
 //            .navigationBarTitle(Text("Bookworm Learn"))
 //        }
         
-        if sizeClass == .compact {
-            return AnyView(VStack {
-                Text("Active Size Class:")
-                Text("COMPACT")
+        
+//        if sizeClass == .compact {
+//            return AnyView(VStack {
+//                Text("Active Size Class:")
+//                Text("COMPACT")
+//
+//            }
+//            .font(.largeTitle))
+//
+//        } else {
+//            return AnyView(HStack {
+//                Text("Active Size Class:")
+//                Text("REGULAR")
+//
+//            }
+//            .font(.largeTitle))
+//
+//        }
+        
+        VStack {
+            List {
+                ForEach(students, id: \.id) { student in
+                    Text(student.name ?? "Unknown")
+                }
+            }
+
+            Button("Add") {
+                let firstNames = ["Dolores", "Maeve", "Robert", "William", "Bernard", "Clementine", "Teddy"]
+                let lastNames = ["Abernathy", "Millay", "Ford", "Lowe", "Pennyfeather", "Flood"]
+
+                let chosenFirstName = firstNames.randomElement()!
+                let chosenLastName = lastNames.randomElement()!
+
+                let student = Student(context: self.moc)
+                student.id = UUID()
+                student.name = "\(chosenFirstName) \(chosenLastName)"
+
+                try? self.moc.save()
 
             }
-            .font(.largeTitle))
-
-        } else {
-            return AnyView(HStack {
-                Text("Active Size Class:")
-                Text("REGULAR")
-
-            }
-            .font(.largeTitle))
-
-        }
+            
+          }
         
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return ContentView().environment(\.managedObjectContext, context)
     }
 }
+#endif
